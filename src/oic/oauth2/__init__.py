@@ -42,13 +42,13 @@ from oic.oauth2.message import RefreshAccessTokenRequest
 from oic.oauth2.message import ResourceRequest
 from oic.oauth2.message import ROPCAccessTokenRequest
 from oic.oauth2.message import TokenErrorResponse
-from oic.oauth2.message import sanitize
 from oic.oauth2.util import get_or_post
 from oic.oauth2.util import verify_header
 from oic.utils.http_util import BadRequest
 from oic.utils.http_util import Response
 from oic.utils.http_util import SeeOther
 from oic.utils.keyio import KeyJar
+from oic.utils.sanitize import sanitize
 from oic.utils.sdb import SessionBackend  # noqa
 from oic.utils.sdb import session_update
 from oic.utils.time_util import utc_time_sans_frac
