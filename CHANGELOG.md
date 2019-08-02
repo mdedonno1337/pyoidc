@@ -10,7 +10,11 @@ The format is based on the [KeepAChangeLog] project.
 ### Added
 - [#719] Add support for JWT registration tokens
 
+### Removed
+- [#676] Removed deprecated message factory and related stuff
+
 [#719]: https://github.com/OpenIDC/pyoidc/pull/719
+[#676]: https://github.com/OpenIDC/pyoidc/pull/676
 
 ## 1.1.2 [2019-11-23]
 
