@@ -49,6 +49,14 @@ class PyoidcSettings:
         self.timeout = timeout
 
 
+class ConsumerSettings(PyoidcSettings):
+    """Base settings for consumer shared among OAuth 2.0 and OpenID Connect."""
+
+
+class OauthConsumerSettings(ConsumerSettings):
+    """Specific settings for consumer OAuth 2.0 consumer."""
+
+
 class ProviderSettings(PyoidcSettings):
     """Base settings for provider shared among OAuth 2.0 and OpenID Connect."""
 
