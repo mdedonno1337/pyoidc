@@ -76,7 +76,7 @@ class PBase(object):
             )
             self.settings.timeout = timeout
 
-        self.keyjar = keyjar or KeyJar(verify_ssl=verify_ssl)
+        self.keyjar = keyjar or KeyJar(verify_ssl=self.settings.verify_ssl)
 
         self.cookiejar = cookielib.FileCookieJar()
 
