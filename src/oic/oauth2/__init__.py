@@ -1132,19 +1132,44 @@ class Server(PBase):
 
     def __init__(
         self,
-        verify_ssl: bool = True,
+        verify_ssl: bool = None,
         keyjar: KeyJar = None,
         client_cert: Union[str, Tuple[str, str]] = None,
-        timeout: int = 5,
+        timeout: float = None,
         message_factory: Type[MessageFactory] = OauthMessageFactory,
+        settings: OauthProviderSettings = None,
     ):
-        """Initialize the server."""
-        super().__init__(
-            verify_ssl=verify_ssl,
-            keyjar=keyjar,
-            client_cert=client_cert,
-            timeout=timeout,
-        )
+        """
+        Initialize the server.
+
+        Keyword Args:
+            settings
+                Instance of :class:`OauthProviderSettings` with configuration options.
+
+        """
+        self.settings = settings or OauthProviderSettings()
+        if verify_ssl is not None:
+            warnings.warn(
+                "`verify_ssl` is deprecated, please use `settings` instead if you need to set a non-default value.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            self.settings.verify_ssl = verify_ssl
+        if client_cert is not None:
+            warnings.warn(
+                "`client_cert` is deprecated, please use `settings` instead if you need to set a non-default value.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            self.settings.client_cert = client_cert
+        if timeout is not None:
+            warnings.warn(
+                "`timeout` is deprecated, please use `settings` instead if you need to set a non-default value.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            self.settings.timeout = timeout
+        super().__init__(keyjar=keyjar, settings=self.settings)
         self.message_factory = message_factory
 
     @staticmethod
