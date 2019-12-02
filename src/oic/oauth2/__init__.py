@@ -52,6 +52,7 @@ from oic.utils.http_util import SeeOther
 from oic.utils.keyio import KeyJar
 from oic.utils.sdb import SessionBackend  # noqa
 from oic.utils.sdb import session_update
+from oic.utils.settings import OauthProviderSettings
 from oic.utils.settings import OauthConsumerSettings
 from oic.utils.time_util import utc_time_sans_frac
 
