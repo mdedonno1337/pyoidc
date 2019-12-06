@@ -52,7 +52,7 @@ from oic.utils.http_util import SeeOther
 from oic.utils.keyio import KeyJar
 from oic.utils.sdb import SessionBackend  # noqa
 from oic.utils.sdb import session_update
-from oic.utils.settings import OauthProviderSettings
+from oic.utils.settings import OauthServerSettings
 from oic.utils.settings import OauthConsumerSettings
 from oic.utils.time_util import utc_time_sans_frac
 
@@ -220,7 +220,7 @@ class Client(PBase):
                 stacklevel=2,
             )
             self.settings.timeout = timeout
-        PBase.__init__(self, self.settings)
+        PBase.__init__(self, settings=self.settings)
 
         self.sso_db = None  # type: Optional[SessionBackend]
         self.client_id = client_id
@@ -1138,17 +1138,17 @@ class Server(PBase):
         client_cert: Union[str, Tuple[str, str]] = None,
         timeout: float = None,
         message_factory: Type[MessageFactory] = OauthMessageFactory,
-        settings: OauthProviderSettings = None,
+        settings: OauthServerSettings = None
     ):
         """
         Initialize the server.
 
         Keyword Args:
             settings
-                Instance of :class:`OauthProviderSettings` with configuration options.
+                Instance of :class:`OauthServerSettings` with configuration options.
 
         """
-        self.settings = settings or OauthProviderSettings()
+        self.settings = settings or OauthServerSettings()
         if verify_ssl is not None:
             warnings.warn(
                 "`verify_ssl` is deprecated, please use `settings` instead if you need to set a non-default value.",
