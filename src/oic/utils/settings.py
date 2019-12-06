@@ -27,7 +27,7 @@ class PyoidcSettings:
             Control TLS server certificate validation.
             If set to True the certificate is validated against the global settings,
             if set to False, no validation is performed.
-            If set to a filename his is used as a certificate bundle in openssl format.
+            If set to a filename this is used as a certificate bundle in openssl format.
             If set to a directory name this is used as a CA directory in the openssl format.
         client_cert
             Local cert to use as client side certificate.
