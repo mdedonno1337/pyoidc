@@ -176,7 +176,7 @@ class Client(PBase):
         client_cert=None,
         timeout=None,
         message_factory: Type[MessageFactory] = OauthMessageFactory,
-        settings: OauthClientSettings = None,
+        settings: PyoidcSettings = None,
     ):
         """
         Initialize the instance.
