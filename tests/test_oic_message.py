@@ -5,7 +5,6 @@ from urllib.parse import parse_qs
 from urllib.parse import urlencode
 
 import pytest
-from jwkest.jwk import SYMKey
 from jwkest.jws import left_hash
 
 from oic import rndstr
@@ -41,6 +40,7 @@ from oic.utils import time_util
 from oic.utils.jwt import JWT
 from oic.utils.keyio import KeyBundle
 from oic.utils.keyio import KeyJar
+from oic.utils.keyio import PyoidcJWK
 from oic.utils.time_util import utc_time_sans_frac
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -557,7 +557,7 @@ class TestAccessTokenResponse(object):
             "aud": "TestClient",
         }
         idts = IdToken(**idval)
-        key = SYMKey(key="TestPassword")
+        key = PyoidcJWK(kty='oct', key="TestPassword")
         _signed_jwt = idts.to_jwt(key=[key], algorithm="HS256")
 
         # Mess with the signed id_token
@@ -587,7 +587,7 @@ class TestAccessTokenResponse(object):
             "aud": "TestClient",
         }
         idts = IdToken(**idval)
-        key = SYMKey(key="TestPassword")
+        key = PyoidcJWK(kty='oct', key="TestPassword")
         _signed_jwt = idts.to_jwt(key=[key], algorithm="HS256")
 
         _info = {
