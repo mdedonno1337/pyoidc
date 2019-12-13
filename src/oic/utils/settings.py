@@ -69,8 +69,8 @@ class PyoidcSettings:
             super().__setattr__(name, value)
         else:
             raise SettingsException(
-                "%s has a type of %s, expected any of %s.",
-                (name, type(value), resolved),
+                "%s has a type of %s, expected any of %s."
+                % (name, type(value), resolved),
             )
 
 
