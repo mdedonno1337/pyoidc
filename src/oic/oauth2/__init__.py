@@ -225,7 +225,7 @@ class Client(PBase):
                 stacklevel=2,
             )
             self.settings.timeout = timeout
-        PBase.__init__(self, settings=self.settings)
+        PBase.__init__(self, keyjar=keyjar, settings=self.settings)
 
         self.sso_db = None  # type: Optional[SessionBackend]
         self.client_id = client_id
