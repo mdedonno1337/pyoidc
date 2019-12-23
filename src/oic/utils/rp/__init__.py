@@ -145,10 +145,7 @@ class Client(oic.Client):
 
         _token = atresp["access_token"]
 
-        try:
-            _id_token = atresp["id_token"]
-        except KeyError:
-            pass
+        _id_token = atresp.get("id_token")
         return _token, _id_token
 
     def callback(self, response, session, format="dict"):
@@ -184,7 +181,9 @@ class Client(oic.Client):
             self._err("Received nonce not the same as expected.")
 
         if self.behaviour["response_type"] == "code":
-            _token, _id_token = self._do_code(response, authresp)
+            _token, new_id_token = self._do_code(response, authresp)
+            if new_id_token is not None:
+                _id_token = new_id_token
         else:
             _token = authresp["access_token"]
 
